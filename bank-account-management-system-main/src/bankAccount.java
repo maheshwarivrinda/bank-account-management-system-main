@@ -9,11 +9,20 @@ public class bankAccount {
     }
 
     public void deposit(double amount){
-        balance+= amount;
+        if (amount <= 0){
+            System.out.println("Balance cannot be negative.");
+        } else{
+        balance+= amount;}
     }
 
     public void withdraw(double amount){
-        balance-= amount;
+        if(amount <= 0) {
+            System.out.println("Withdrawal must be positive.");
+        }
+        else if (amount > balance){
+            System.out.println("Insufficient balance");
+        } else{
+        balance-= amount;}
     }
 
     public void displayAccInfo (){
