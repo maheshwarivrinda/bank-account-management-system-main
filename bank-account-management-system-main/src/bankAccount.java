@@ -1,23 +1,25 @@
 public class bankAccount {
 
-    int deposit;
-    int withdraw;
-    int balance;
-    String displayAccInfo;
+    String customerName;
+    double balance;
 
-    public bankAccount(int deposit, int withdraw, int balance, String displayAccInfo) {
-        this.deposit = deposit;
-        this.withdraw = withdraw;
+    public bankAccount(String customerName, int balance) {
+        this.customerName = customerName;
         this.balance = balance;
-        this.displayAccInfo = displayAccInfo;
     }
 
-    public int getDeposit(){
-        return deposit;
+    public void deposit(double amount){
+        balance+= amount;
     }
 
-    public int getWithdraw(){
-        return withdraw;
+    public void withdraw(double amount){
+        balance-= amount;
     }
+
+    public void displayAccInfo (){
+        System.out.println("Customer Name: "+ customerName +"\nBalance: " + balance);
+    }
+
+
 
 }
