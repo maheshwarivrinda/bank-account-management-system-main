@@ -3,7 +3,7 @@ public class bankAccount {
     String customerName;
     double balance;
 
-    public bankAccount(String customerName, int balance) {
+    public bankAccount(String customerName, double balance) {
         this.customerName = customerName;
         this.balance = balance;
     }
@@ -19,7 +19,7 @@ public class bankAccount {
         if(amount <= 0) {
             System.out.println("Withdrawal must be positive.");
         }
-        else if (amount > balance){
+        else if (amount < balance){
             System.out.println("Insufficient balance");
         } else{
         balance-= amount;}
@@ -28,7 +28,6 @@ public class bankAccount {
     public void displayAccInfo (){
         System.out.println("Customer Name: "+ customerName +"\nBalance: " + balance);
     }
-
 
 
 }
