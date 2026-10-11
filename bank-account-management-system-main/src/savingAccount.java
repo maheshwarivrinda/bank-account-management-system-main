@@ -3,8 +3,8 @@ public class savingAccount extends bankAccount{
 double maxWithdrawal;
 double interestRate = 0.04;
 
-public savingAccount (String customerName, double balance){
-    super(customerName, balance);
+public savingAccount (String accountNumber, String customerName, double balance){
+    super(accountNumber, customerName, balance);
 }
 
 @Override

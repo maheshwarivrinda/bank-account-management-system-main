@@ -1,5 +1,7 @@
 public class revolvingCreditAccount extends bankAccount{
 
-    public revolvingCreditAccount (String customerName, double balance){
-        super(customerName, balance);}
+    double creditLimit;
+
+    public revolvingCreditAccount (String accountNumber, String customerName, double balance){
+        super(accountNumber, customerName, balance);}
 }
