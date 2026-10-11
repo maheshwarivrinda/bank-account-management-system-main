@@ -16,14 +16,14 @@ public class Main {
 
         while (running) {
             System.out.println(" \n ==== Bank Management System ====");
-            System.out.print("1. Display All Accounts");
-            System.out.print("2. Create an Account");
-            System.out.print("3. Deposit Money");
-            System.out.print("4. Withdraw Money / Spend");
-            System.out.print("5. Repay Credit (Revolving Credit)");
-            System.out.print("6. Remove an Account");
-            System.out.print("7. Exit");
-            System.out.print("Select an option (1-7): ");
+            System.out.println("1. Display All Accounts");
+            System.out.println("2. Create an Account");
+            System.out.println("3. Deposit Money");
+            System.out.println("4. Withdraw Money / Spend");
+            System.out.println("5. Repay Credit (Revolving Credit)");
+            System.out.println("6. Remove an Account");
+            System.out.println("7. Exit");
+            System.out.println("Select an option (1-7): ");
 
             int choice= scanner.nextInt();
             scanner.nextLine();
@@ -32,8 +32,12 @@ public class Main {
                 case 1:
 
                     System.out.println("=== All Accounts ===");
-                    for(bankAccount acc: accounts){
-                        acc.displayAccInfo();
+                    if (accounts.isEmpty()){
+                        System.out.println("No accounts found.");
+                    } else{
+                        for(bankAccount acc: accounts){
+                            acc.displayAccInfo();
+                        }
                     } break;
 
 
@@ -44,34 +48,57 @@ public class Main {
                     System.out.println("3 Revolving Credit Account");
                     System.out.print("Choice: ");
 
-                    int type = scanner.nextInt();
-                    scanner.nextLine();
+                    int type = 0;
+                    try{
+                        type = scanner.nextInt();
+                        scanner.nextLine();
+                    }catch(InputMismatchException e){
+                        System.out.println("Invalid input! Account creation cancelled.");
+                        scanner.nextLine();
+                        break;
+                    }
 
                     System.out.print("Enter Customer Name: ");
                     String name = scanner.nextLine();
 
                     if (type == 1) {
-                        System.out.print("Enter Initial Balance: €");
-                        double balance= scanner.nextDouble();
-                        scanner.nextLine();
-                        accounts.add(new savingAccount(name, balance));
-                        System.out.println("Savings account created successfully.");
+                        System.out.print("Enter Initial Balance: sek");
+                        try{double balance= scanner.nextDouble();
+                            scanner.nextLine();
+                            accounts.add(new savingAccount(name, balance));
+                            System.out.println("Savings account created successfully.");
+                        }catch (InputMismatchException e){
+                            System.out.println("Invalid amount!");
+                            scanner.nextLine();
+                        }
+
 
                     } else if( type == 2){
-                    System.out.print("Enter Initial Balance: €");
-                    double bal = scanner.nextDouble();
-                    System.out.print("Enter Overdraft Limit: €");
-                    double limit = scanner.nextDouble();
-                    scanner.nextLine();
-                    accounts.add(new currentAccount(name, bal, limit));
-                    System.out.println("Current account created successfully.");
+                        try{
+                            System.out.print("Enter Initial Balance: sek");
+                            double bal = scanner.nextDouble();
+                            System.out.print("Enter Overdraft Limit: sek");
+                            double limit = scanner.nextDouble();
+                            scanner.nextLine();
+                            accounts.add(new currentAccount(name, bal, limit));
+                            System.out.println("Current account created successfully.");
+                        } catch (InputMismatchException e){
+                            System.out.println("Invalid amount!");
+                            scanner.nextLine();
+                        }
 
-                    }else if (type == 3){
-                    System.out.print("Enter Credit Limit: €");
-                    double limit = scanner.nextDouble();
-                    scanner.nextLine();
-                    accounts.add(new revolvingCreditAccount(name, limit));
-                    System.out.println("Revolving credit account created successfully.");
+
+
+                    }else if (type == 3){try{
+                        System.out.print("Enter Credit Limit: sek");
+                        double limit = scanner.nextDouble();
+                        scanner.nextLine();
+                        accounts.add(new revolvingCreditAccount(name, limit));
+                        System.out.println("Revolving credit account created successfully.");
+                    }catch (InputMismatchException e){
+                        System.out.println("Invalid amount!");
+                        scanner.nextLine();
+                    }
 
                 }else{
                         System.out.println("Invalid account type.");
