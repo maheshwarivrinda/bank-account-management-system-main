@@ -1,7 +1,7 @@
 public class savingAccount extends bankAccount{
 
 double maxWithdrawal;
-double interest;
+double interestRate = 0.04;
 
 public savingAccount (String customerName, double balance){
     super(customerName, balance);
@@ -23,7 +23,7 @@ public void withdraw(double amount){
 }
 
 @Override
-    public void displayAccInfo(){
+public void displayAccInfo(){
     System.out.println("Customer Name: "+ customerName +"\nBalance after withdrawal: " + balance);
     }
 
