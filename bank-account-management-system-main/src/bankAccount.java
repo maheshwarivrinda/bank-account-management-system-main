@@ -1,17 +1,11 @@
 public class bankAccount {
 
-    String accountNumber;
-    String customerName;
+     String customerName;
     double balance;
 
-    public bankAccount(String accountNumber, String customerName, double balance) {
-        this.accountNumber = accountNumber;
+    public bankAccount(String customerName, double balance) {
         this.customerName = customerName;
         this.balance = balance;
-    }
-
-    public String getAccountNumber() {
-        return accountNumber;
     }
 
     public String getCustomerName() {

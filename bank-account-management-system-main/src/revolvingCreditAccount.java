@@ -2,8 +2,8 @@ public class revolvingCreditAccount extends bankAccount{
 
     double creditLimit;
 
-    public revolvingCreditAccount (String accountNumber, String customerName, double balance){
-        super(accountNumber, customerName, balance);}
+    public revolvingCreditAccount (String customerName, double balance){
+        super(customerName, balance);}
 
     public double getCreditLimit() {
         return creditLimit;
