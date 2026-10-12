@@ -1,4 +1,4 @@
-public class revolvingCreditAccount extends bankAccount{
+public class revolvingCreditAccount extends bankAccount implements feeCalculable{
 
     double creditLimit;
 
@@ -15,6 +15,21 @@ public class revolvingCreditAccount extends bankAccount{
 
     public double getCreditUsed(){
         return creditLimit - getBalance();
+    }
+
+    @Override
+
+    public double calculateMonthlyFee(){
+        return getCreditUsed() * 0.02;
+    }
+
+    @Override
+    public void applyMonthlyFee() {
+        double fee= calculateMonthlyFee();
+        if (fee > 0){
+            balance-= fee;
+            System.out.println("Credit fee of sek" + fee + " applied.");
+        }
     }
 
     @Override

@@ -1,4 +1,4 @@
-public class currentAccount extends bankAccount {
+public class currentAccount extends bankAccount implements feeCalculable{
 
 
     double overdraftLimit;
@@ -20,6 +20,21 @@ public class currentAccount extends bankAccount {
             this.overdraftLimit= overdraftLimit;
         }
 
+    }
+
+    @Override
+    public double calculateMonthlyFee(){
+        return (getBalance() < 0) ? 5.0 : 0.0;
+    }
+
+    @Override
+
+    public void applyMonthlyFee(){
+        double fee= calculateMonthlyFee();
+        if (fee > 0){
+            balance-= fee;
+            System.out.println("Monthly fee of sek" + fee + " applied.");
+        }
     }
 
     @Override
