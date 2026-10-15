@@ -1,7 +1,7 @@
 public class currentAccount extends bankAccount implements feeCalculable{
 
 
-    double overdraftLimit;
+    private double overdraftLimit;
 
     public currentAccount(String customerName, double balance, double overdraftLimit){
         super(customerName, balance);
@@ -24,7 +24,7 @@ public class currentAccount extends bankAccount implements feeCalculable{
 
     @Override
     public double calculateMonthlyFee(){
-        return (getBalance() < 0) ? 5.0 : 0.0;
+        return (getBalance() < 0) ? 5.0 : 0.0; // Fee of 5.0 SEK applied only if balance is negative
     }
 
     @Override
@@ -32,7 +32,7 @@ public class currentAccount extends bankAccount implements feeCalculable{
     public void applyMonthlyFee(){
         double fee= calculateMonthlyFee();
         if (fee > 0){
-            balance-= fee;
+            balance -= fee;
             System.out.println("Monthly fee of sek" + fee + " applied.");
         }
     }
@@ -41,11 +41,11 @@ public class currentAccount extends bankAccount implements feeCalculable{
     public void withdraw(double amount){
         if (amount <= 0){
             System.out.println("Withdrawal must be positive");
-        }else if ((balance- amount) < overdraftLimit){
+        }else if ((getBalance()- amount) < -overdraftLimit){
             System.out.println("Transaction rejected");
         } else{
             balance -= amount;
-            System.out.println(("Withdrew sek" + amount + " and remaining balance is sek" + balance));
+            System.out.println(("Withdrew sek" + amount + " and remaining balance is sek" + getBalance()));
         }
 
     }
@@ -54,7 +54,7 @@ public class currentAccount extends bankAccount implements feeCalculable{
     public void displayAccInfo(){
         super.displayAccInfo();
         System.out.println("Overdraft Limit: sek" + overdraftLimit );
-        System.out.println("Total available amount : sek"+ (balance + overdraftLimit));
+        System.out.println("Total available amount : sek"+ (getBalance() + overdraftLimit));
     }
 
 }

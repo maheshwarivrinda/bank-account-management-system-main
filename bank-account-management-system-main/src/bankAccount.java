@@ -1,6 +1,6 @@
 public class bankAccount {
 
-     String customerName;
+    private String customerName;
     double balance;
 
     public bankAccount(String customerName, double balance) {

@@ -1,6 +1,6 @@
 public class revolvingCreditAccount extends bankAccount implements feeCalculable{
 
-    double creditLimit;
+    private double creditLimit;
 
     public revolvingCreditAccount (String customerName, double balance){
         super(customerName, balance);}
@@ -55,7 +55,7 @@ public class revolvingCreditAccount extends bankAccount implements feeCalculable
     @Override
     public void displayAccInfo(){
         super.displayAccInfo();
-        System.out.println("Credit Limit: sek" + creditLimit  );
+        System.out.println("Credit Limit: sek" + getCreditUsed()  );
         System.out.println("Available credit: sek" + balance);
         System.out.println("Credit Used: sek" + getCreditUsed());
     }

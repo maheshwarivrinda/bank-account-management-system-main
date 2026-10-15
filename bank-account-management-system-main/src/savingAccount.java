@@ -6,8 +6,22 @@ public savingAccount (String customerName, double balance){
     super(customerName, balance);
 }
 
-public double calculateInterest(){
-    return balance * interestRate;
+public savingAccount(String customerName, double balance, double maxWithdrawal, double interestRate) {
+        super(customerName, balance);
+        this.maxWithdrawal = maxWithdrawal;
+        this.interestRate = interestRate;
+}
+
+public double getMaxWithdrawal() {
+    return maxWithdrawal;
+}
+
+public double getInterestRate() {
+    return interestRate;
+}
+
+    public double calculateInterest(){
+    return getBalance() * interestRate;
 }
 
 public void applyInterest (){
@@ -29,7 +43,7 @@ public void withdraw(double amount){
 public void displayAccInfo(){
     super.displayAccInfo();
     System.out.println("Interest rate: " + (interestRate * 100) + "%");
-    System.out.println("Customer Name: "+ customerName +"\nBalance after withdrawal: " + balance);
+    System.out.println("Customer Name: "+ getCustomerName() +"\nBalance after withdrawal: " + getBalance());
     }
 
 }
