@@ -1,7 +1,6 @@
 public class savingAccount extends bankAccount{
-
-double maxWithdrawal = 1000.0;
-double interestRate = 0.04;
+    private double maxWithdrawal = 1000.0;
+    private double interestRate = 0.04;
 
 public savingAccount (String customerName, double balance){
     super(customerName, balance);

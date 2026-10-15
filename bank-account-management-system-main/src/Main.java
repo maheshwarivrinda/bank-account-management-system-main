@@ -9,8 +9,8 @@ public class Main {
 
         ArrayList<bankAccount> accounts = new ArrayList<>();
         accounts.add(new savingAccount( "Robin" , 5000));
-        accounts.add(new currentAccount("Robin" , 4321, 500));
-        accounts.add(new revolvingCreditAccount( "Robin" , 2650));
+        accounts.add(new currentAccount("Priya" , 4321, 500));
+        accounts.add(new revolvingCreditAccount( "Chase" , 2650));
 
         boolean running =true;
 
@@ -19,8 +19,8 @@ public class Main {
             System.out.println("1. Display All Accounts");
             System.out.println("2. Create an Account");
             System.out.println("3. Deposit Money");
-            System.out.println("4. Withdraw Money / Spend");
-            System.out.println("5. Repay Credit (Revolving Credit)");
+            System.out.println("4. Withdraw Money");
+            System.out.println("5. Repay Credit"); // revolving credit account
             System.out.println("6. Remove an Account");
             System.out.println("7. Exit");
             System.out.println("Select an option (1-7): ");
@@ -61,6 +61,7 @@ public class Main {
                     System.out.print("Enter Customer Name: ");
                     String name = scanner.nextLine();
 
+                    // for saving account
                     if (type == 1) {
                         System.out.print("Enter Initial Balance: sek");
                         try{double balance= scanner.nextDouble();
@@ -73,6 +74,7 @@ public class Main {
                         }
 
 
+                        // for current account
                     } else if( type == 2){
                         try{
                             System.out.print("Enter Initial Balance: sek");
@@ -87,7 +89,7 @@ public class Main {
                             scanner.nextLine();
                         }
 
-
+                        //for revolving credit account
 
                     }else if (type == 3){try{
                         System.out.print("Enter Credit Limit: sek");

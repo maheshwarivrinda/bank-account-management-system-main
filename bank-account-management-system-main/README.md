@@ -3,12 +3,12 @@ A Java application for managing bank accounts, transactions, and account operati
 Planeringsmall
 
 Projektidé
-A system for managing a bank's customers account. The program will allow the users to create, remove, search, deposit money into and withdraw money from different types of bank account.   
+A system for managing a bank's customers account. The program will allow the users to create, remove, deposit money into and withdraw money from different types of bank account.   
 
 
 Superklass
 Namn: Bank Account
-Gemensamma fält: accountHolder, balance
+Gemensamma fält: customerName, balance
 Gemensamma metoder: deposit(), withdraw(), get balance(), 
 
 Subklasser (minst tre)
