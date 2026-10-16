@@ -1,60 +1,61 @@
-# bank-account-management-system
-A Java application for managing bank accounts, transactions, and account operations. 
-Planeringsmall
+# Bank-account-management-system
 
-Projektidé
-A system for managing a bank's customers account. The program will allow the users to create, remove, deposit money into and withdraw money from different types of bank account.   
+## Project Idea
+
+A bank management system that manages different types of bank accounts (Savings, Current, and Revolving Credit) within a
+unified polymorphic collection. The application allows users to view accounts, create accounts, deposit funds, withdraw 
+funds, repay credit lines, and remove accounts cleanly while handling invalid user inputs gracefully.
+
+## Superclass
+* **Name:** `bankAccount`
+* **Common Fields:** `customerName` (String), `balance` (double)
+* **Common Methods:** `getCustomerName()`, `getBalance()`, `deposit(double amount)`, `withdraw(double amount)`, `displayAccInfo()`.
+
+## Subclasses
+* **`savingAccount`** 
+    * It includes a maximum withdrawal limit per transaction (`maxwithdrawal = 1000.0 sek`), an interest rate 
+(`interest rate = 0.04`), and a method to calculate and apply interest (`applyInterest()`).
+    * Overridden Methods used are `withdraw(double amount)` and `displayAccInfo()`. 
 
 
-Superklass
-Namn: Bank Account
-Gemensamma fält: customerName, balance
-Gemensamma metoder: deposit(), withdraw(), get balance(), 
+* **`currentAccount`** 
+    * It features an overdraft limit(`overdraftLimit`) allowing balances to go below zero down to (`-overdraftLimit`).
+  Implements (`feeCalculable`) to apply monthly fees when overdrawn.
+    * Overridden methods are `withdraw(double amount)`, `displayAccInfo()`, `calculateMonthlyFee()` and `applyMonthlyFee()`.
 
-Subklasser (minst tre)
-Namn — private account
-Namn — Saving account
-Namn — Bussiness account
 
-Interface
-Namn:
-Metod(er):
-Implementeras av (minst två subklasser):
-Meny
-Lista minst fyra åtgärder kopplade till samlingen (t.ex. lägga till, ta bort, söka, samt en egen åtgärd som passar er domän).
+* **`revolvingCreditAccount`**
+    * It operates as a credit line with a total `creditLimit` , available credit (`balance`), and tracked credit debt 
+  (`getCreditUsed()`). Features a unique `repay(double amount)` method to pay off owed debt and restore available credit.
+      * Overridden methods are `withdraw(double amount)`, `displayAccInfo()`, `calculateMonthlyFee()` and `applyMonthlyFee()`.
 
-Felscenarion
-Minst två konkreta situationer i just ert program som kan gå fel och som ni behöver hantera (inte generella exempel).
 
-Motivering (fylls i senare i veckan)
-När ni kommit igång och gjort några ändringar: skriv kort varför strukturen ser ut som den gör, och om ni övervägde ett annat sätt att lösa det på. Detta behöver inte fyllas i redan i första commiten.
+## Interface
+* **Name:** `feeCalculable`
+* **Methods:** `double calculateMonthlyFee()`, `void applyMonthlyFee()`.
+* **Implemented by:** `CurrentAccount`, `RevolvingCreditAccount`
 
-Exempel (ifyllt) — Biblioteksystem
-Projektidé: Ett system för att hantera ett biblioteks samling av utlåningsbara medier och vilka som är utlånade.
 
-Superklass
+## Meny
 
-Namn: Media
-Gemensamma fält: title, id, isBorrowed (true/false)
-Gemensamma metoder: showInfo(), borrow()
-Subklasser
+1. **Display All Accounts**
+2. **Create an Account**
+3. **Deposit Money**
+4. **Withdraw Money**
+5. **Repay Credit**
+6. **Remove an account**
+7. **Exit**
 
-Book — overridar showInfo() för att även visa författare
-Magazine — overridar borrow() eftersom tidskrifter bara får lånas i en vecka
-Movie — overridar showInfo() för att visa åldersgräns
-Interface
 
-Namn: Reservable
-Metod: reserve()
-Implementeras av: Book, Movie
-Meny
+## Error Scenarios
 
-Lägga till medium
-Ta bort medium
-Söka på titel
-Låna ut/lämna tillbaka
-Reservera
-Felscenarion
+* **Invalid Scanner Input Types:**  
+    Try typing letters (e.g., \`'a'\`) when prompted for menu choices or monetary amounts. Used `Try-Catch` which print
+an error message, and invoke `scanner.nextLine()` to clear the invalid token from the input buffer so the program doesn't
+crash and instead start the loop again (Meny).
 
-Försök att låna ut ett medium som redan är utlånat
-Försök att skapa ett medium med tomt titel-fält
+
+* **Violating account constraints:**  
+    Trying to withdraw more than 1000 SEK from a `SavingsAccount`, attempts to overdraw a `CurrentAccount` beyond its overdraft
+limit, or tries to repay more credit than is actually owed on a `RevolvingCreditAccount`. Used conditional checks inside methods 
+to validate inputs against account attributes before execution and output clear rejection messages if constraints are violated.
