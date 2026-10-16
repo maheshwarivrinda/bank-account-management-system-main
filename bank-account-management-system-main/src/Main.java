@@ -9,8 +9,9 @@ public class Main {
 
         ArrayList<bankAccount> accounts = new ArrayList<>();
         accounts.add(new savingAccount( "Robin" , 5000));
-        accounts.add(new currentAccount("Priya" , 4321, 500));
-        accounts.add(new revolvingCreditAccount( "Chase" , 2650));
+        accounts.add(new currentAccount( "Robin" , 5000, 1000));
+        accounts.add(new currentAccount("Priya" , 4321, 1000));
+        accounts.add(new revolvingCreditAccount( "Chase" , 7500));
 
         boolean running =true;
 
@@ -25,8 +26,16 @@ public class Main {
             System.out.println("7. Exit");
             System.out.println("Select an option (1-7): ");
 
-            int choice= scanner.nextInt();
-            scanner.nextLine();
+            int choice= 0;
+            try{
+                choice= scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e){
+                System.out.println("Invalid input! Please enter a number between 1 and 7.");
+                scanner.nextLine();
+                continue; // Restart loop to show menu again
+            }
+
 
             switch (choice){
                 case 1:
@@ -37,6 +46,7 @@ public class Main {
                     } else{
                         for(bankAccount acc: accounts){
                             acc.displayAccInfo();
+                            System.out.println("--------------------------------");
                         }
                     } break;
 

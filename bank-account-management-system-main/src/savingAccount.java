@@ -2,6 +2,7 @@ public class savingAccount extends bankAccount{
     private double maxWithdrawal = 1000.0;
     private double interestRate = 0.04;
 
+    // Constructor using super() to call parent constructor
 public savingAccount (String customerName, double balance){
     super(customerName, balance);
 }
@@ -12,6 +13,7 @@ public savingAccount(String customerName, double balance, double maxWithdrawal, 
         this.interestRate = interestRate;
 }
 
+    // Public getter methods
 public double getMaxWithdrawal() {
     return maxWithdrawal;
 }
@@ -19,17 +21,18 @@ public double getMaxWithdrawal() {
 public double getInterestRate() {
     return interestRate;
 }
-
+    // Calculates interest based on current balance getter
     public double calculateInterest(){
-    return getBalance() * interestRate;
+    return balance * interestRate;
 }
 
+    // Applies interest using parent's deposit method
 public void applyInterest (){
     double interest = calculateInterest();
     deposit(interest);
-    System.out.println("Applied sek" + interest + "in interest.");
-}
+    }
 
+    // Overridden withdraw method with transaction limit
 @Override
 
 public void withdraw(double amount){
@@ -39,6 +42,7 @@ public void withdraw(double amount){
         super.withdraw(amount);}
 }
 
+//Display account details
 @Override
 public void displayAccInfo(){
     super.displayAccInfo();

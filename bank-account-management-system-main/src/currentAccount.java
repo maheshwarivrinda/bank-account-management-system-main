@@ -8,6 +8,7 @@ public class currentAccount extends bankAccount implements feeCalculable{
         this.overdraftLimit = overdraftLimit;
     }
 
+    // Public getter methods
     public double getOverdraftLimit() {
         return overdraftLimit;
     }
@@ -49,7 +50,7 @@ public class currentAccount extends bankAccount implements feeCalculable{
         }
 
     }
-
+// Display account details
     @Override
     public void displayAccInfo(){
         super.displayAccInfo();

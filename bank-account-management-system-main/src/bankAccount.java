@@ -8,6 +8,7 @@ public class bankAccount {
         this.balance = balance;
     }
 
+    // Public getter methods
     public String getCustomerName() {
         return customerName;
     }
@@ -16,6 +17,7 @@ public class bankAccount {
         return balance;
     }
 
+    // Deposit method
     public void deposit(double amount){
         if (amount <= 0){
             System.out.println("Balance cannot be negative.");
@@ -24,6 +26,7 @@ public class bankAccount {
         System.out.println("Deposited: sek" + amount + ". New Balance: sek" + balance);}
     }
 
+    //Withdraw method
     public void withdraw(double amount){
         if(amount <= 0) {
             System.out.println("Withdrawal amount must be positive.");
@@ -35,7 +38,9 @@ public class bankAccount {
         System.out.println("Withdrew: sek" + amount + ". Remaining balance : sek" + balance);}
     }
 
+    // Display account details
     public void displayAccInfo (){
+        System.out.println("Account Type: " + getClass().getSimpleName());
         System.out.println("Customer Name: "+ customerName +"\nBalance: " + balance);
     }
 
