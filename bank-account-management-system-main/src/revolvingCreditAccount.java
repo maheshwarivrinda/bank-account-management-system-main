@@ -19,7 +19,6 @@ public class revolvingCreditAccount extends bankAccount implements feeCalculable
     }
 
     @Override
-
     public double calculateMonthlyFee(){
         return getCreditUsed() * 0.02;
     }

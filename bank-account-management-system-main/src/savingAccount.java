@@ -34,7 +34,6 @@ public void applyInterest (){
 
     // Overridden withdraw method with transaction limit
 @Override
-
 public void withdraw(double amount){
     if (amount > maxWithdrawal){
         System.out.println("Can't withdraw more than sek" + maxWithdrawal + " per transaction. ");

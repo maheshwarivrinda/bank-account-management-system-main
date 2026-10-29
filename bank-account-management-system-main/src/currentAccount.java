@@ -29,7 +29,6 @@ public class currentAccount extends bankAccount implements feeCalculable{
     }
 
     @Override
-
     public void applyMonthlyFee(){
         double fee= calculateMonthlyFee();
         if (fee > 0){
